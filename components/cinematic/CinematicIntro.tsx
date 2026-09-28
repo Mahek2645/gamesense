@@ -287,8 +287,23 @@ export default function CinematicIntro({ onContinue }: CinematicIntroProps) {
       {/* ============================================================ */}
       {/* 2. CENTERED GAMESENSE WORD CONTAINER                         */}
       {/* ============================================================ */}
+      {/* Quick Skip Button for mobile & desktop */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation()
+          handleDismiss()
+        }}
+        className="absolute top-4 right-4 z-30 rounded-full border border-slate-700/60 bg-slate-900/60 px-3 py-1 text-[11px] font-mono tracking-wider uppercase text-slate-400 hover:border-violet-500 hover:text-white transition backdrop-blur-sm"
+      >
+        Skip &times;
+      </button>
+
+      {/* ============================================================ */}
+      {/* 2. CENTERED GAMESENSE WORD CONTAINER                         */}
+      {/* ============================================================ */}
       <div
-        className="relative z-10 flex items-center justify-center font-black tracking-tight"
+        className="relative z-10 flex items-center justify-center font-black tracking-tight max-w-[96vw] px-2 text-center"
         style={{
           transform: isDismissing ? 'translateY(-80px) scale(0.92)' : 'translateY(0) scale(1)',
           opacity: isDismissing ? 0 : 1,
@@ -318,7 +333,7 @@ export default function CinematicIntro({ onContinue }: CinematicIntroProps) {
                     : { delay: 0.25, duration: 0.8 },
                 }
           }
-          className="inline-block text-[clamp(3.5rem,14vw,11rem)] font-black leading-none text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.25)]"
+          className="inline-block text-[clamp(2.5rem,11vw,11rem)] sm:text-[clamp(3.5rem,14vw,11rem)] font-black leading-none text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.25)]"
         >
           Game
         </motion.span>
@@ -346,7 +361,7 @@ export default function CinematicIntro({ onContinue }: CinematicIntroProps) {
                     : { delay: 0.25, duration: 0.8 },
                 }
           }
-          className="inline-block text-[clamp(3.5rem,14vw,11rem)] font-black leading-none text-[#7757ff] drop-shadow-[0_0_45px_rgba(119,87,255,0.6)]"
+          className="inline-block text-[clamp(2.5rem,11vw,11rem)] sm:text-[clamp(3.5rem,14vw,11rem)] font-black leading-none text-[#7757ff] drop-shadow-[0_0_45px_rgba(119,87,255,0.6)]"
         >
           Sense
         </motion.span>
@@ -371,7 +386,9 @@ export default function CinematicIntro({ onContinue }: CinematicIntroProps) {
         transition={{ duration: 0.5 }}
         className="absolute bottom-10 z-20 flex flex-col items-center gap-2 pointer-events-none text-slate-400 font-mono tracking-widest uppercase text-xs select-none"
       >
-        <span className="text-[11px] tracking-[0.2em] text-slate-400/90 font-medium">Scroll to Explore</span>
+        <span className="text-[10px] sm:text-[11px] tracking-[0.2em] text-slate-400/90 font-medium">
+          Scroll or Tap to Explore
+        </span>
         <ChevronDown className="size-4 animate-bounce text-violet-400" />
       </motion.div>
     </div>

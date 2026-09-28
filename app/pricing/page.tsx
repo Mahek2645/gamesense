@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Gamepad2, Check, ArrowRight, Sparkles, ShieldCheck, Zap } from 'lucide-react'
 import Link from 'next/link'
+import { SiteNavbar } from '@/components/landing/SiteNavbar'
 
 const tiers = [
   {
@@ -71,39 +72,8 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-[#080d18] text-white selection:bg-violet-500/30">
       {/* Top Navbar */}
-      <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-[#080d18]/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-tr from-[#7757ff] to-cyan-400 shadow-md shadow-violet-500/20">
-              <Gamepad2 className="size-5 text-white" />
-            </span>
-            <span className="text-xl font-bold tracking-tight">gamesense</span>
-          </Link>
+      <SiteNavbar activePage="pricing" ctaText="Dashboard" ctaHref="/dashboard" />
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <Link href="/how-it-works" className="hover:text-white transition">How It Works</Link>
-            <Link href="/platform" className="hover:text-white transition">Platform</Link>
-            <Link href="/pricing" className="text-white font-semibold">Pricing</Link>
-            <Link href="/contact" className="hover:text-white transition">Contact</Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-xs font-semibold px-4 py-2 rounded-lg border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-200 transition"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/dashboard"
-              className="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-[#7757ff] to-cyan-500 text-white shadow-md shadow-violet-500/20 hover:brightness-110 transition inline-flex items-center gap-1.5"
-            >
-              <span>Dashboard</span>
-              <ArrowRight className="size-3.5" />
-            </Link>
-          </div>
-        </div>
-      </header>
 
       {/* Pricing Header */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">

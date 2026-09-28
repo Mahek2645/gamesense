@@ -23,6 +23,7 @@ export function GameSense3DBackground() {
     renderer.toneMappingExposure = 1.2
 
     // Setup Scene & Camera
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
       45,
@@ -30,7 +31,7 @@ export function GameSense3DBackground() {
       0.1,
       100
     )
-    camera.position.set(0, 0, 15)
+    camera.position.set(0, 0, isMobile ? 21 : 15)
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0x0f172a, 1.5)
@@ -341,12 +342,22 @@ export function GameSense3DBackground() {
       targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1
     }
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches && e.touches[0]) {
+        targetMouseX = (e.touches[0].clientX / window.innerWidth) * 2 - 1
+        targetMouseY = -(e.touches[0].clientY / window.innerHeight) * 2 + 1
+      }
+    }
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('touchmove', handleTouchMove, { passive: true })
 
     // Resize Handler
     const handleResize = () => {
       if (!canvas) return
+      const mobile = window.innerWidth < 768
       camera.aspect = window.innerWidth / window.innerHeight
+      camera.position.z = mobile ? 21 : 15
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
     }
@@ -426,6 +437,7 @@ export function GameSense3DBackground() {
     return () => {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('touchmove', handleTouchMove)
       window.removeEventListener('resize', handleResize)
 
       // Traverse and dispose all geometries, materials
